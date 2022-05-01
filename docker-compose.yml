@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/src/app
+      - node_modules_volume:/usr/src/app/node_modules
+    command: sh -c "npm run dev"
+    ports:
+      - "3000:3000"
+    restart: always
+volumes:
+  node_modules_volume:
