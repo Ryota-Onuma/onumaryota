@@ -1,0 +1,267 @@
+@import url("../reset.css");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+    .mainBgColor {
+        background-color: #0B2025;
+    }
+
+    .subBgColor {
+        background-color: #037D9C;
+    }
+
+
+    .fontMainColor {
+        color: white;
+    }
+
+    .fontEnhanceColor {
+        color: #fddd00;
+    }
+
+    .m-center {
+        margin: 0 auto;
+    }
+
+    .page {
+        padding-top: 64px;
+    }
+
+    .page.fixHeight {
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    @media (min-width: 1024px) {
+        .page {
+            margin: 0;
+            background-color: #0B2025;
+        }
+    }
+
+    .sectionComponent {
+        width: 70%;
+        margin: 4rem auto;
+    }
+
+    @media (max-width: 640px) {
+        .sectionComponent {
+            width: 90%;
+            margin: 3rem auto;
+        }
+    }
+
+
+    .filterShadow {
+        filter: drop-shadow(15px 25px 0px #037d9c);
+    }
+
+    .clipPath {
+        clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+        width: 300px;
+        height: 300px;
+    }
+
+    .skill {
+        border: 5px solid #037d9c;
+    }
+
+    .skillDescriotion {
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 60px;
+    }
+
+    .skillDescriotion>p {
+        width: 100%;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: bold;
+        color: white;
+        overflow-wrap: break-word;
+        background-color: red;
+    }
+
+    .skillDescriotion>div>img {
+
+        display: inline-block;
+        width: 65px;
+        height: 65px;
+        margin-top: 10px;
+
+    }
+
+    .skillContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        position: relative;
+
+    }
+
+    .skillContainer.active {
+        height: 600px;
+        overflow: hidden;
+
+    }
+
+    .skillContainer.active::before {
+        background: linear-gradient(to bottom,
+                rgba(11, 32, 37, 0),
+                rgba(11, 32, 37, 0),
+                rgba(11, 32, 37, 0),
+                rgba(11, 32, 37, 1));
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        content: " ";
+        z-index: 10;
+    }
+
+
+
+}
+
+.postBody {
+    width: 100%;
+
+}
+
+.postBody h1 {
+    font-size: 1.5rem;
+    margin: 50px 0;
+}
+
+.postBody h2 {
+    border-left: 4px solid #fddd00;
+    padding-left: 15px;
+    box-sizing: border-box;
+    margin: 40px 0;
+    font-size: 1.4rem;
+}
+
+.postBody h3 {
+    border-bottom: 3px solid #fddd00;
+    padding-bottom: 15px;
+    margin: 30px 0;
+    font-size: 1.3rem;
+}
+
+.postBody h5 {
+    margin: 15px 0;
+}
+
+.postBody blockquote {
+    border-left: 4px solid #037d9c;
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.postBody a {
+    text-decoration: underline;
+    margin: 3px 0;
+    display: inline;
+}
+
+.postBody p {
+    font-size: 18px;
+    line-height: 25px;
+}
+
+.postBody ul {
+    margin: 20px 0;
+}
+
+.postBody ul li {
+    list-style: square;
+    list-style-position: inside;
+
+    font-size: 18px;
+    line-height: 25px;
+    margin: 5px 0;
+    word-break: break-all;
+}
+
+.postBody ul li a {
+    display: inline;
+}
+
+
+.postBody ol li {
+    list-style: decimal;
+    list-style-position: inside;
+    font-size: 18px;
+    line-height: 25px;
+    margin: 5px 0;
+    word-break: break-all;
+}
+
+.postBody ol li a {
+    display: inline;
+}
+
+.postBody ul li ul {
+    margin: 0 0 0 20px;
+}
+
+.postBody ol li ol {
+    margin: 0 0 0 20px;
+}
+
+.postBody li a {
+    word-break: break-all;
+}
+
+.postBody th {
+    text-align: center;
+    background-color: rgba(#05abd7, 0.5);
+}
+
+.postBody th,
+.postBody td {
+    border: 2px solid #05abd7;
+    font-size: 18px;
+    line-height: 25px;
+    padding: 10px;
+    min-width: 300px;
+}
+
+.postBody .table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.postBody table {
+    border-collapse: collapse;
+    /* セルの線を重ねる */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    margin: 30px 0;
+}
+
+.postBody img {
+    display: block;
+    margin: 20px auto;
+    width: 500px;
+    height: 281px;
+    object-fit: contain
+}
+
+@media (max-width: 640px) {
+    .postBody img {
+        display: block;
+        margin: 20px auto;
+        width: 100%;
+        object-fit: contain
+    }
+}
+
+@import url("../prism.css");

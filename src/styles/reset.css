@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Murecho&display=swap');
+
 /* Box sizing rules */
 *,
 *::before,
@@ -35,6 +37,7 @@ body {
     min-height: 100vh;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
+    font-family: 'Murecho', sans-serif;
 }
 
 /* A elements that don't have a class get default styles */
@@ -72,3 +75,6 @@ select {
         scroll-behavior: auto !important;
     }
 }
+
+
+/* @import "./prism.scss"; */

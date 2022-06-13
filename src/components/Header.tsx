@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react'
 import { Icon } from '@iconify/react';
-import styles from "@/styles/components/Header.module.scss";
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -10,78 +9,83 @@ type Link = {
     url: string;
 }
 
-const HamburgerMenu = (props: any) => {
-    const [isClicked, setIsClicked] = useState(false)
-    return (
-        <div className={styles.hamburgerContainer}>
-            <div className={styles.hamburgerIconContainer} onClick={() => setIsClicked(!isClicked)}>
-                {!isClicked &&
-                    <div className={styles.hamburger}>
-                        <Icon icon="ant-design:menu-outlined" width="50" height="50" />
-                    </div>
-                }
-                {isClicked &&
-                    <div className={styles.hamburger}>
-                        <Icon icon="ep:close-bold" width="50" height="50" />
-                    </div>
-                }
-            </div>
-            {isClicked &&
-                <div className={styles.globalMenuSp}>
-                    <div className={styles.links}>
-                        {props.links.map((link: Link) => {
-                            return (
-                                <span className={styles.link} key={link.url}>
-                                    <Link href={link.url} >{link.displayName}</Link>
-                                </span>
-                            )
-                        })}
-                    </div>
-                </div>
-            }
-        </div >
-    )
-}
 
 const PCHeader = (props: any) => {
     return (
-        <div className={styles.pc}>
-            <div className={styles.pcHeader}>
-                <div>
-                    <Image src="/images/buntyo.png" width={42} height={42} alt="Offical Icoon" className={styles.icon} />
-                </div>
-                <div className={styles.links}>
-                    {props.links.map((link: Link) => {
-                        return (
-                            <span className={styles.link} key={link.url}>
-                                <Link href={link.url} >{link.displayName}</Link>
-                            </span>
-                        )
-                    })}
-                </div>
+        <div className='w-screen h-16 flex justify-between items-center px-14 bg-mainColor' >
+            <div className='flex flex-col justify-center items-baseline h-20 cursor-pointer'>
+                <Link href="/">
+                    <div>
+                        <Image src="/images/buntyo.png" width={42} height={42} alt="Offical Icon" />
+                    </div>
+                </Link>
             </div>
-        </div>
-    )
-}
-
-const TabletHeader = (props: any) => {
-    return (
-        <div className={styles.tablet}>
-            <div className={styles.tabletHeader}>
-                <HamburgerMenu links={props.links} />
+            <div className='h-16 flex items-start border-box'>
+                {props.links.map((link: Link) => {
+                    return (
+                        <Link href={link.url} key={link.url}>
+                            <span className='p-5 pb-3 hover:border-b-2 hover:border-solid  cursor-pointer box-border h-16 hover:border-fontColor' key={link.url}>
+                                {link.displayName}
+                            </span>
+                        </Link>
+                    )
+                })}
             </div>
         </div>
     )
 }
 
 const MobileHeader = (props: any) => {
+    const [isClicked, setIsClicked] = useState(false)
+
+    const clicked = (clickedVal: boolean): void => {
+        setIsClicked(clickedVal)
+
+        if (typeof window !== "undefined" && clickedVal) {
+            window.document.querySelector(".page")?.classList.add("fixHeight")
+            return
+        }
+        if (typeof window !== "undefined" && !clickedVal) {
+            window.document.querySelector(".page")?.classList.remove("fixHeight")
+            return
+        }
+        return
+    }
+
+    const pagemove = () => {
+        clicked(false)
+    }
+
     return (
-        <div className={styles.mobile}>
-            <div className={styles.mobileHeader} >
-                <HamburgerMenu links={props.links} />
+        <div className='absolute top-0 w-screen text-fontColor bg-transparent flex flex-col z-30'>
+            <div className='w-full flex justify-end z-50' onClick={() => clicked(!isClicked)}>
+                {!isClicked &&
+                    <div className='flex flex-col items-center justify-center fixed z-50 right-3 top-3 cursor-pointer text-center'>
+                        <Icon icon="ant-design:menu-outlined" width="50" height="50" />
+                    </div>
+                }
+                {isClicked &&
+                    <div className='flex flex-col items-center justify-center fixed z-50 right-3 top-3 cursor-pointer text-center'>
+                        <Icon icon="ep:close-bold" width="50" height="50" />
+                    </div>
+                }
             </div>
+            {isClicked &&
+                <div className='flex flex-col items-center justify-center w-screen h-screen overflow-hidden z-40 bg-mainColor'>
+                    <div className='flex flex-col items-center justify-center'>
+                        {props.links.map((link: Link) => {
+                            return (
+                                <span className='block my-2 font-bold text-2xl' key={link.url} onClick={() => pagemove()}>
+                                    <Link href={link.url}>{link.displayName}</Link>
+                                </span>
+                            )
+                        })}
+                    </div>
+                </div>
+            }
         </div>
     )
+
 }
 
 const Header = () => {
@@ -91,12 +95,8 @@ const Header = () => {
             url: "/#introduction",
         },
         {
-            displayName: "Works",
-            url: "/works",
-        },
-        {
             displayName: "Blog",
-            url: "/blog",
+            url: "/blogs",
         },
         {
             displayName: "Contact",
@@ -104,10 +104,13 @@ const Header = () => {
         }
     ]
     return (
-        <header className={styles.header}>
-            <PCHeader links={links} />
-            <TabletHeader links={links} />
-            <MobileHeader links={links} />
+        <header>
+            <div className='hidden lg:block'>
+                <PCHeader links={links} />
+            </div>
+            <div className='block lg:hidden' >
+                <MobileHeader links={links} />
+            </div>
         </header>
     );
 }

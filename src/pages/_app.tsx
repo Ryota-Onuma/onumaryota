@@ -1,19 +1,21 @@
-import '../styles/reset.css'  //この行を追加
-import '../styles/globals.scss'
-import Header from '../components/Header'
+import '@/styles/app/app.css'
+
 import Head from "next/head";
 import type { AppProps } from 'next/app'
+import { Layout } from '../components/Layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className="default">
+    <main className="mainBgColor fontMainColor w-screen">
       <Head>
         <title>onuma-ryota.com</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-      <Header />
-      <Component {...pageProps} />
-    </main>
+      </Head >
+
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </main >
   )
 }
 
