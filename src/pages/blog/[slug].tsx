@@ -6,8 +6,8 @@ import Head from "next/head";
 import { getPosts, getPostBySlug, getAllTags } from "@/lib/api";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
-import { Tags } from '@/components/Tags.tsx'
-import { Post } from "@/components/blog/index.tsx"
+import { Tags } from '@/components/Tags'
+import { Post } from "@/components/blog/index"
 
 
 

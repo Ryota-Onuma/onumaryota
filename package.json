@@ -15,8 +15,6 @@
     "dayjs": "^1.11.3",
     "gray-matter": "^4.0.3",
     "html-react-parser": "^1.4.14",
-    "markdown-it": "^13.0.1",
-    "markdown-it-prism": "^2.2.4",
     "marked": "^4.0.17",
     "next": "12.1.5",
     "prismjs": "^1.28.0",

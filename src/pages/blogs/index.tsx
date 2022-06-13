@@ -2,8 +2,8 @@ import type { InferGetStaticPropsType, NextPage } from "next";
 import Head from "next/head";
 import { getPosts, getAllTags, getZennArticle } from "@/lib/api";
 import { Blog } from '@/components/blogs'
-import { Tags } from '@/components/Tags.tsx'
-import { Pagenation, PER_PAGE } from '@/components/Pagenation.tsx'
+import { Tags } from '@/components/Tags'
+import { Pagenation, PER_PAGE } from '@/components/Pagenation'
 import { splitArray } from '@/lib/arrayUtil.ts'
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 

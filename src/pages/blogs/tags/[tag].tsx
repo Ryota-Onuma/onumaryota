@@ -7,7 +7,7 @@ import { removeDuplicate } from "@/lib/arrayUtil"
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from "next/head";
 import { getPostsByTag, getAllTags } from "@/lib/api";
-import { Tags } from '@/components/Tags.tsx'
+import { Tags } from '@/components/Tags'
 import { Blog } from '@/components/blogs'
 
 
@@ -27,8 +27,7 @@ type PathParams = {
 export const getStaticPaths: GetStaticPaths<PathParams> = async () => {
     const tags = await getAllTags()
 
-    const filteredTags = removeDuplicate<string>(tags).map(tag => [tag.toLowerCase(), tag, tag.toUpperCase()]).flat()
-
+    const filteredTags = removeDuplicate<string>(tags).map(tag => tag.toLowerCase())
     return {
         paths: filteredTags.map((tag: string) => {
             return {

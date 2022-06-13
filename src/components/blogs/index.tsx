@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Icon } from '@iconify/react';
-import { Loading } from '@/components/Loading.tsx'
-import { Tag } from '@/components/Tags.tsx'
+import { Loading } from '@/components/Loading'
+import { Tag } from '@/components/Tags'
 
 
 export const Blog = (props) => {
@@ -63,7 +63,7 @@ const EachBlog = (props) => {
     return (
         <div className='w-full mb-9 cursor-pointer'>
             {props.post.externalUrl ? (
-                <a href={props.post.externalUrl} target="_blank" key={props.post.externalUrl}>
+                <a href={props.post.externalUrl} target="_blank" rel="noreferrer" key={props.post.externalUrl}>
                     <EachBlogInner post={props.post} />
                 </a>
             ) :

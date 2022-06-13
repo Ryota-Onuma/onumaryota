@@ -3,7 +3,7 @@ import { Link as Scroll } from 'react-scroll';
 import Link from 'next/link'
 import { Icon } from '@iconify/react';
 import Image from 'next/image'
-import { Loading } from "@/components/Loading.tsx"
+import { Loading } from "@/components/Loading"
 
 export const Greeting = () => {
     return (

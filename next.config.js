@@ -6,6 +6,9 @@ module.exports = {
     config.resolve.alias['@'] = path.join(__dirname, 'src')
     return config
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
     domains: [
       "res.cloudinary.com"

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import type { InferGetStaticPropsType, NextPage } from "next";
 import Head from "next/head";
 import { getPosts } from "@/lib/api";
-import { Greeting, Introduction, SkillSets, Blogs, InqueryForm } from "@/components/home/index.tsx"
+import { Greeting, Introduction, SkillSets, Blogs, InqueryForm } from "@/components/home/index"
 import { getSkills } from "@/components/home/consts.ts"
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 

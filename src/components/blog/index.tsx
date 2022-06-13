@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Tag } from '@/components/Tags.tsx'
+import { Tag } from '@/components/Tags'
 import Image from 'next/image'
 import { Icon } from '@iconify/react';
 import { marked } from 'marked'
