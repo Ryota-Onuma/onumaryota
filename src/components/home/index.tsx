@@ -219,7 +219,7 @@ export const InqueryForm = () => {
     const handleSubmit = async e => {
         e.preventDefault()
 
-        await fetch('/api/send', {
+        await fetch('/api/mail', {
             body: JSON.stringify({
                 email: state.email,
                 message: `
