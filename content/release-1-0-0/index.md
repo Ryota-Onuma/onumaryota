@@ -15,12 +15,11 @@ tags: ["Release Note"]
   - Next.js/TypeScriptに挑戦しました。CSSフレームワークはTailwind CSSを使いました。
   - 
 - バックエンド: `言語とかフレームワークは特になし`
-  - メール送信などは Netlify に付属している機能でいけました。
-  - Blog に関しては Markdown ファイルを読み込んでいます。
+  - BlogはMarkdown ファイルを読み込んでいます。
   - 画像の配信はCloudinaryから実施しています。
-- ホスティング: `Netlify`
-  - 特に CD を用意しなくても、Github に Push するだけでホスティングできるのは便利
-  - Netlify Functions というサーバーレスでコードを実行できるサービスも提供してくれているみたいなので、ちょっとした処理がほしくなってもどうにかなりそう。
+- ホスティング: `Vercel`
+  - 特にCDを用意しなくても、GithubにPushするだけでホスティングできるのは便利
+  - もともとNetlifyで試験的にデプロイしていましたが、Vercelのほうが早いという記事を何個か読んだのでVercelに切り替えました
 
 # 特徴
 
@@ -54,13 +53,7 @@ func (p *Person) sayName() string {
 
 ## Zennから記事をインポートできるようにした
 - [Zennが提供してくれているRSSフィードフィード](https://zenn.dev/zenn/articles/zenn-feed-rss)を使って[自分がZennに書いた記事](https://zenn.dev/ryota_o)をインポートできるようにしました。Zennに投稿されている記事は<span style="background-color:#027d9c;display:inline-block;padding:2px 6px;border-radius:5px;">#Zenn</span>が自動でつきます。
-
-## お問い合わせがあったら LINE に通知する
-
-- 一応、今回のポートフォリオサイトにはお問い合わせフォームが設けてあります。何かありましたらご連絡いただければと思います。
-- フォームは`Netlify Forms`を使って実装しました。
-  - フォームに入力して送信すると`Netlify Forms`にデータが届きます。ここで bot 等による投稿を弾いたあと、私のメールアドレスに転送されます。
-    - 転送を検知して LINE に通知が来るように設定してあります。
+。
 
 # 今後の予定
 

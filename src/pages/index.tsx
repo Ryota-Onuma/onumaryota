@@ -20,8 +20,9 @@ const Home: NextPage<Props> = ({ posts }) => {
   return (
     <div className='page'>
       <Head>
-        <title>onuma-ryota.
-          | Top</title>
+        <title>onuma-ryota.com | Top</title>
+        <meta property="og:image" content="/images/buntyo.png" />
+        <meta property="og:description" content="Welcome to numa-ryota.com" />
       </Head>
       <div>
         <Greeting />

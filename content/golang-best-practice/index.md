@@ -1,7 +1,7 @@
 ---
 title: "【随時更新】Goのベストプラクティスについて"
 date: "2022/6/14"
-tags: ["AWS"]
+tags: ["Golang"]
 introduction: "Goのベストプラクティスや命名規則をまとめておきます"
 draft: false
 thumbnail: "https://res.cloudinary.com/djprqtbkw/image/upload/v1650167126/blog/Go-Logo_LightBlue_skbgdl.jpg"
