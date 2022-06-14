@@ -58,7 +58,7 @@ const Blogs: NextPage<Props> = ({ posts, tags, currentTag }: Props) => {
     return (
         <div className='page'>
             <NextSeo
-                title={`onuma-ryota.com | ${currentTag}のついたBlog`}
+                title={`Blog > ${currentTag}`}
             />
             <Blog posts={posts} currentTag={currentTag} />
             <Tags tags={tags} />

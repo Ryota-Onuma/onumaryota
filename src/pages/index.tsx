@@ -20,7 +20,7 @@ const Home: NextPage<Props> = ({ posts }) => {
   return (
     <div className='page'>
       <NextSeo
-        title="onuma-ryota.com | Top"
+        title="Top"
       />
       <div>
         <Greeting />

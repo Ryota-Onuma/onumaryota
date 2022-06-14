@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import { NextPage, InferGetStaticPropsType } from "next";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
@@ -54,7 +53,7 @@ const Blog: NextPage<Props> = ({ post, tags }) => {
     return (
         <div className='page'>
             <NextSeo
-                title={`onuma-ryota.com | ${post.title}`}
+                title={`${post.title}`}
                 description={post.introduction}
                 openGraph={{
                     images: [

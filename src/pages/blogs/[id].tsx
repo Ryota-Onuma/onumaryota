@@ -52,7 +52,7 @@ const Blogs: NextPage<Props> = ({ posts, tags, privious, current, next, begin, e
     return (
         <div className='page'>
             <NextSeo
-                title="onuma-ryota.com | Blog"
+                title="Blog"
             />
             <Blog posts={posts} />
             <Pagenation privious={privious} current={current} next={next} begin={begin} end={end} pathBase="/blogs" />

@@ -31,7 +31,9 @@ module.exports = {
         '48': '48%',
       },
       height: {
-        '2px': '2px'
+        '2px': '2px',
+        '40%': '40%',
+        '30%': '30%'
       }
     },
     variants: {
