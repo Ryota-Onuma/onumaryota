@@ -1,31 +1,30 @@
-export default async function handler(req, res) {
+import { MailDataRequired } from '@sendgrid/helpers/classes/mail';
+import { EmailData } from '@sendgrid/helpers/classes/email-address';
+import sgMail from '@sendgrid/mail';
+import type { NextApiRequest, NextApiResponse } from 'next';
+export default async function handler(
+    req: NextApiRequest,
+    res: NextApiResponse<any>
+) {
     if (req.method === 'POST') {
 
-
-        const msg = {
+        sgMail.setApiKey(process.env.SENDGRID_KEY as string);
+        const msg: MailDataRequired = {
             to: process.env.TO_EMAIL,
-            from: process.env.FROM_EMAIL,
+            from: process.env.FROM_EMAIL as EmailData,
             subject: 'お問合せありがとうございました。',
             text: 'お問合せを受け付けました。回答をお待ちください。' + req.body.message,
-            html: 'お問合せを受け付けました。回答をお待ちください。' + req.body.message,
+            html: '<p>お問合せを受け付けました。回答をお待ちください。' + req.body.message + '</p>',
         };
-        let err = await sendMail(JSON.stringify(msg))
-        if (err != null) {
-            res.status(200).json({ error: 'error' })
+        console.log('req.body: ', req.body);
+        try {
+            await sgMail.send(msg);
+            res.status(200).json(msg);
+        } catch (err) {
+            console.error(err);
+            res.status(500).json(err);
         }
-    }
-
-    res.status(200).json({ result: 'ok' })
-}
-
-const sendMail = async (msg: string) => {
-    const sgMail = require('@sendgrid/mail');
-    sgMail.setApiKey(process.env.SENDGRID_KEY); //SendGridのAPIキー
-    try {
-        await sgMail.send(msg);
-        return null
-    } catch (error) {
-        console.error(error);
-        return error
+    } else {
+        res.status(200).json({ result: 'ok' })
     }
 }

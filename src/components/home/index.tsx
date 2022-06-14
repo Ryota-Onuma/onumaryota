@@ -221,7 +221,6 @@ export const InqueryForm = () => {
 
         await fetch('/api/mail', {
             body: JSON.stringify({
-                email: state.email,
                 message: `
         Name
         ${state.name}
