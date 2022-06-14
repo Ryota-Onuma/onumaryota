@@ -1,23 +1,27 @@
-import { createTransport } from 'nodemailer';
+export default function handler(req, res) {
+    if (req.method === 'POST') {
+        const sgMail = require('@sendgrid/mail');
+        sgMail.setApiKey(process.env.SENDGRID_KEY); //SendGridのAPIキー
 
-export default async (req, res) => {
-    const transporter = createTransport({
-        service: 'gmail',
-        port: 465,
-        secure: true,
-        auth: {
-            user: process.env.MAIL_USER,
-            pass: process.env.MAIL_PASS,
-        },
-    });
-    await transporter.sendMail({
-        from: process.env.MAIL_FROM,
-        to: process.env.MAIL_TO,
-        subject: 'お問い合わせ',
-        text: req.body,
-    });
+        const msg = {
+            to: req.body.email,
+            from: process.env.FROM_EMAIL,
+            subject: 'お問合せありがとうございました。',
+            text: 'お問合せを受け付けました。回答をお待ちください。' + req.body.message,
+            html: 'お問合せを受け付けました。回答をお待ちください。' + req.body.message,
+        };
 
-    res.status(200).json({
-        success: true,
-    });
-};
+        (async () => {
+            try {
+                await sgMail.send(msg);
+            } catch (error) {
+                console.error(error);
+                if (error.response) {
+                    console.error(error.response.body)
+                }
+            }
+        })();
+    }
+
+    res.status(200)
+}

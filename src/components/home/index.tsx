@@ -216,90 +216,93 @@ export const InqueryForm = () => {
             .join("&")
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
-        let shouldContinue
-        if (typeof window !== "undefined") {
-            shouldContinue = window.confirm("本当に送信しますか？")
-        }
-        if (!shouldContinue) {
-            return
-        }
-        await fetch('/api/mail', {
-            method: 'POST',
-            body: `
-      Name
-      ${state.name}
-      Email
-      ${state.email}
-      Subject
-      ${state.subject}
-      
-      お問い合わせ内容
-      ${state.message}
-      `,
-        });
+
+        await fetch('/api/send', {
+            body: JSON.stringify({
+                email: state.email,
+                message: `
+        Name
+        ${state.name}
+        Email
+        ${state.email}
+        Subject
+        ${state.subject}
+        
+        お問い合わせ内容
+        ${state.message}
+        `
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST'
+        })
+
+
+
+
         setState({})
         alert("メールを送りました")
-    };
-}
+    }
 
-const formData = [
-    { name: "name", formType: "text", label: "Name" },
-    { name: "email", formType: "email", label: "Email" },
-    { name: "subject", formType: "subject", label: "Subject" },
-    { name: "message", formType: "textarea", label: "Message" }
-]
-return (
-    <div id="contact" className='sectionComponent'>
-        <div className='flex flex-col items-start lg:flex-row lg:justify-between'>
-            <div className='w-full sm:w-6/12'>
-                <h2 className='fontEnhanceColor text-5xl font-bold leading-none mb-8'>
-                    Contact
-                </h2>
-                <p>お問い合わせはこちらから</p>
-            </div>
-            <div className='flex flex-row justify-start w-full lg:w-6/12 '>
-                <form
-                    name="contact"
-                    method="POST"
-                    onSubmit={handleSubmit}
-                    className='w-full'
-                >
+    const formData = [
+        { name: "name", formType: "text", label: "Name" },
+        { name: "email", formType: "email", label: "Email" },
+        { name: "subject", formType: "subject", label: "Subject" },
+        { name: "message", formType: "textarea", label: "Message" }
+    ]
+    return (
+        <div id="contact" className='sectionComponent'>
+            <div className='flex flex-col items-start lg:flex-row lg:justify-between'>
+                <div className='w-full sm:w-6/12'>
+                    <h2 className='fontEnhanceColor text-5xl font-bold leading-none mb-8'>
+                        Contact
+                    </h2>
+                    <p>お問い合わせはこちらから</p>
+                </div>
+                <div className='flex flex-row justify-start w-full lg:w-6/12 '>
+                    <form
+                        name="contact"
+                        method="POST"
+                        onSubmit={handleSubmit}
+                        className='w-full'
+                    >
 
-                    {formData.map(d => {
-                        return (
-                            <div className='flex flex-col items-start my-5' key={d.name}>
-                                <label htmlFor={d.name} className='text-enhanceColor mb-2'>{d.label}</label>
-                                {
-                                    d.formType === "textarea" ?
-                                        <textarea
-                                            id={d.name}
-                                            name={d.name}
-                                            onChange={handleChange}
-                                            placeholder={d.label}
-                                            required
-                                            className='rounded p-2 box-border bg-formPlacehoderColor w-full h-80'
-                                        ></textarea> :
-                                        <input
-                                            id={d.name}
-                                            type="text"
-                                            name={d.name}
-                                            onChange={handleChange}
-                                            placeholder={d.label}
-                                            required
-                                            className='rounded p-2 box-border bg-formPlacehoderColor w-full'
-                                        />
-                                }
-                            </div>
-                        )
-                    })}
-                    <div className='flex flex-row justify-end'>
-                        <button type="submit" className='bg-mainColor rounded-xl border border-enhanceColor text-enhanceColor border-solid inline-block sm:py-4 sm:px-5 p-3 cursor-pointer'>Send a Message!</button>
-                    </div>
-                </form>
+                        {formData.map(d => {
+                            return (
+                                <div className='flex flex-col items-start my-5' key={d.name}>
+                                    <label htmlFor={d.name} className='text-enhanceColor mb-2'>{d.label}</label>
+                                    {
+                                        d.formType === "textarea" ?
+                                            <textarea
+                                                id={d.name}
+                                                name={d.name}
+                                                onChange={handleChange}
+                                                placeholder={d.label}
+                                                required
+                                                className='rounded p-2 box-border bg-formPlacehoderColor w-full h-80'
+                                            ></textarea> :
+                                            <input
+                                                id={d.name}
+                                                type="text"
+                                                name={d.name}
+                                                onChange={handleChange}
+                                                placeholder={d.label}
+                                                required
+                                                className='rounded p-2 box-border bg-formPlacehoderColor w-full'
+                                            />
+                                    }
+                                </div>
+                            )
+                        })}
+                        <div className='flex flex-row justify-end'>
+                            <button type="submit" className='bg-mainColor rounded-xl border border-enhanceColor text-enhanceColor border-solid inline-block sm:py-4 sm:px-5 p-3 cursor-pointer'>Send a Message!</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-)
+    )
 }
