@@ -1,5 +1,5 @@
 import type { InferGetStaticPropsType, NextPage } from "next";
-import Head from "next/head";
+import { NextSeo } from 'next-seo';
 import { getPosts, getAllTags } from "@/lib/api";
 import { Pagenation, PER_PAGE } from '@/components/Pagenation'
 import { splitArray } from '@/lib/arrayUtil.ts'
@@ -51,9 +51,9 @@ export const getStaticProps = async (context) => {
 const Blogs: NextPage<Props> = ({ posts, tags, privious, current, next, begin, end }) => {
     return (
         <div className='page'>
-            <Head>
-                <title>onuma-ryota.com | Blog</title>
-            </Head>
+            <NextSeo
+                title="onuma-ryota.com | Blog"
+            />
             <Blog posts={posts} />
             <Pagenation privious={privious} current={current} next={next} begin={begin} end={end} pathBase="/blogs" />
             <Tags tags={tags} />

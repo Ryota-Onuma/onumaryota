@@ -5,7 +5,7 @@
 import type { InferGetStaticPropsType, NextPage } from "next";
 import { removeDuplicate } from "@/lib/arrayUtil"
 import { GetStaticPaths, GetStaticProps } from 'next'
-import Head from "next/head";
+import { NextSeo } from 'next-seo';
 import { getPostsByTag, getAllTags } from "@/lib/api";
 import { Tags } from '@/components/Tags'
 import { Blog } from '@/components/blogs'
@@ -57,9 +57,9 @@ export const getStaticProps: GetStaticProps<PageProps> = async context => {
 const Blogs: NextPage<Props> = ({ posts, tags, currentTag }: Props) => {
     return (
         <div className='page'>
-            <Head>
-                <title>onuma-ryota.com | Blog</title>
-            </Head>
+            <NextSeo
+                title={`onuma-ryota.com | ${currentTag}のついたBlog`}
+            />
             <Blog posts={posts} currentTag={currentTag} />
             <Tags tags={tags} />
         </div>

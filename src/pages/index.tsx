@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import type { InferGetStaticPropsType, NextPage } from "next";
-import Head from "next/head";
+import { NextSeo } from 'next-seo';
 import { getPosts } from "@/lib/api";
 import { Greeting, Introduction, SkillSets, Blogs, InqueryForm } from "@/components/home/index"
 import { getSkills } from "@/components/home/consts.ts"
@@ -19,11 +19,9 @@ const Home: NextPage<Props> = ({ posts }) => {
   const skills = getSkills()
   return (
     <div className='page'>
-      <Head>
-        <title>onuma-ryota.com | Top</title>
-        <meta property="og:image" content="/images/buntyo.png" />
-        <meta property="og:description" content="Welcome to numa-ryota.com" />
-      </Head>
+      <NextSeo
+        title="onuma-ryota.com | Top"
+      />
       <div>
         <Greeting />
         <Introduction />

@@ -161,7 +161,7 @@ export const Blogs = (props) => {
                 </div>
             </div >
             <div>
-                <Link href="/blog">
+                <Link href="/blogs">
                     <div className='text-enhanceColor bg-mainColor border-enhanceColor border-solid border-2 inline-block rounded-md p-4 px-5 cursor-pointer'>
                         READ MORE
                     </div>

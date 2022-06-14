@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { NextPage, InferGetStaticPropsType } from "next";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
-import Head from "next/head";
+import { NextSeo } from 'next-seo';
 import { getPosts, getPostBySlug, getAllTags } from "@/lib/api";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
@@ -53,10 +53,18 @@ const Blog: NextPage<Props> = ({ post, tags }) => {
     }
     return (
         <div className='page'>
-            <Head>
-                <title>{`onuma-ryota.com | ${post.title}`}</title>
-                <meta name="description" content={`onuma-ryota.com | ${post.introduction}`} />
-            </Head>
+            <NextSeo
+                title={`onuma-ryota.com | ${post.title}`}
+                description={post.introduction}
+                openGraph={{
+                    images: [
+                        {
+                            url: `${post.thumbnail}`,
+                        },
+                    ],
+                }}
+            />
+
             <div className='w-full lg:w-9/12 mx-auto'>
                 <Post post={post}
                 />

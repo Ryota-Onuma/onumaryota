@@ -15,7 +15,7 @@ tags: ["Release Note"]
   - Next.js/TypeScriptに挑戦しました。CSSフレームワークはTailwind CSSを使いました。
   - 
 - バックエンド: `言語とかフレームワークは特になし`
-  - BlogはMarkdown ファイルを読み込んでいます。
+  - BlogはMarkdownファイルを読み込んでいます。
   - 画像の配信はCloudinaryから実施しています。
 - ホスティング: `Vercel`
   - 特にCDを用意しなくても、GithubにPushするだけでホスティングできるのは便利
@@ -25,7 +25,7 @@ tags: ["Release Note"]
 
 ## デザイン
 
-- サイト、及びロゴは<a href="https://twitter.com/ayano58764615">@ayano58764615</a>さんにデザインしていただきました。ロゴは桜文鳥がモチーフになっています。かわいい印象の強い桜文鳥をかっこよく転換していただきました!
+- サイト、及びロゴは<a href="https://twitter.com/ayano58764615">@ayano58764615</a>さんにデザインしていただきました。ロゴは桜文鳥がモチーフになっています。かわいい印象の強い桜文鳥をかっこよく転換していただきました。
 
 <img src="../../../images/buntyo.png" />
 <h5 style="text-align:center;">ロゴ↑</h5>

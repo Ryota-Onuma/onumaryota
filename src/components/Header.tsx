@@ -91,6 +91,10 @@ const MobileHeader = (props: any) => {
 const Header = () => {
     const links: Link[] = [
         {
+            displayName: "Home",
+            url: "/",
+        },
+        {
             displayName: "Introduction",
             url: "/#introduction",
         },
