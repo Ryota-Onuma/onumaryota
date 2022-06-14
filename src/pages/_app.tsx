@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           url: "https://www.onuma-ryota.com/",
           images: [
             {
-              url: "/images/buntyo.png",
+              url: "https://res.cloudinary.com/djprqtbkw/image/upload/v1655212848/logo_onuma-ryota.com.jpg",
               width: 800,
               height: 600,
               alt: 'ogp onuma-ryota.com',
