@@ -3,7 +3,7 @@ export default async function handler(req, res) {
 
 
         const msg = {
-            to: req.body.email,
+            to: process.env.TO_EMAIL,
             from: process.env.FROM_EMAIL,
             subject: 'お問合せありがとうございました。',
             text: 'お問合せを受け付けました。回答をお待ちください。' + req.body.message,
