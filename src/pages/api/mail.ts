@@ -7,16 +7,15 @@ export default async function handler(
     res: NextApiResponse<any>
 ) {
     if (req.method === 'POST') {
-
         sgMail.setApiKey(process.env.SENDGRID_KEY as string);
         const msg: MailDataRequired = {
             to: process.env.TO_EMAIL,
             from: process.env.FROM_EMAIL as EmailData,
-            subject: 'お問合せありがとうございました。',
-            text: 'お問合せを受け付けました。回答をお待ちください。' + req.body.message,
-            html: '<p>お問合せを受け付けました。回答をお待ちください。' + req.body.message + '</p>',
+            subject: req.body.subject,
+            text: 'お問合せを受け付けました。\n\nEmail: ' + req.body.email + '\n\nMessage: ' + req.body.message,
+            html: 'お問合せを受け付けました。\n\nEmail: ' + req.body.email + '\n\nMessage: ' + req.body.message,
         };
-        console.log('req.body: ', req.body);
+
         try {
             await sgMail.send(msg);
             res.status(200).json(msg);

@@ -218,20 +218,16 @@ export const InqueryForm = () => {
 
     const handleSubmit = async e => {
         e.preventDefault()
-
+        const shouldConfirm = confirm('お問合せメールを送信してもよろしいでしょうか？')
+        if (!shouldConfirm) {
+            return
+        }
         await fetch('/api/mail', {
             body: JSON.stringify({
-                message: `
-        Name
-        ${state.name}
-        Email
-        ${state.email}
-        Subject
-        ${state.subject}
-        
-        お問い合わせ内容
-        ${state.message}
-        `
+                name: state.name,
+                email: state.email,
+                subject: state.subject,
+                message: state.message,
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -239,11 +235,10 @@ export const InqueryForm = () => {
             method: 'POST'
         })
 
-
-
-
-        setState({})
         alert("メールを送りました")
+        if (window) {
+            window.location.reload()
+        }
     }
 
     const formData = [
