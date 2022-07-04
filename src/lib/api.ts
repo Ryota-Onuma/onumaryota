@@ -19,14 +19,12 @@ const ZENN_TAG = 'Zenn'
 const postsDirectory = path.join(process.cwd(), "content");
 
 export const getPostSlugs = () => {
-    const allDirents = fs.readdirSync(postsDirectory, { withFileTypes: true });
+    const allDirents = fs.readdirSync(postsDirectory);
     return allDirents
-        .filter((dirent) => dirent.isDirectory())
-        .map(({ name }) => name);
 }
 
 export const getPostBySlug = (slug: string, fields: string[] = ["slug", "title", "date", "thumbnail", "introduction", "tags", "externalUrl"]) => {
-    const fullPath = path.join(postsDirectory, slug, "index.md");
+    const fullPath = path.join(postsDirectory, `${slug}`);
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(fileContents);
 
@@ -40,32 +38,32 @@ export const getPostBySlug = (slug: string, fields: string[] = ["slug", "title",
         introduction: "",
         tags: [],
     };
+    if (JSON.stringify(data) !== "{}") {
+        fields.forEach((field) => {
+            if (field === "slug") {
+                items[field] = slug;
+            }
+            if (field === "content") {
+                items[field] = content;
+            }
+            if (
+                field === "date"
+            ) {
+                items[field] = convertToJST(data[field])
+            }
 
-    fields.forEach((field) => {
-        if (field === "slug") {
-            items[field] = slug;
-        }
-        if (field === "content") {
-            items[field] = content;
-        }
-        if (
-            field === "date"
-        ) {
-            items[field] = convertToJST(data[field])
-        }
+            if (
+                field === "title" ||
+                field === "thumbnail" ||
+                field === "introduction" ||
+                field === "tags"
+            ) {
 
-        if (
-            field === "title" ||
-            field === "thumbnail" ||
-            field === "introduction" ||
-            field === "tags"
-        ) {
+                items[field] = data[field];
+            }
 
-            items[field] = data[field];
-        }
-
-    });
-
+        });
+    }
     return items;
 }
 
@@ -90,7 +88,9 @@ export const getPostsByTag = async (tagName: string, fields: string[] = ["slug",
 
 export const getPosts = async (fields: string[] = ["slug", "title", "date", "thumbnail", "introduction", "tags", "externalUrl"], displayNum?: number) => {
     const slugs = getPostSlugs();
+
     let posts = slugs.map((slug, i) => getPostBySlug(slug, fields))
+    console.log(posts)
     const zennItems = await getZennArticles()
     posts = [...posts, ...zennItems]
         .sort((a, b) => (a.date > b.date ? -1 : 1));

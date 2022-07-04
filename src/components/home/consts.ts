@@ -18,12 +18,12 @@ const skills: Skill[] = [
         children: [
             {
                 title: "Ruby",
-                rate: 70,
+                rate: 60,
                 skillIcon: "mdi:language-ruby",
             },
             {
                 title: "Go",
-                rate: 60,
+                rate: 63,
                 skillIcon: "fa6-brands:golang",
             },
             {
@@ -32,7 +32,7 @@ const skills: Skill[] = [
                 skillIcon: "akar-icons:python-fill",
             },
             {
-                title: "JavaScript",
+                title: "JavaScript/TypeScript",
                 rate: 40,
                 skillIcon: "ci:javascript",
             },
@@ -47,12 +47,12 @@ const skills: Skill[] = [
                 skillIcon: "simple-icons:hasura",
             },
             {
-                title: "Vue.js",
+                title: "Vue.js/Nuxt.js",
                 rate: 40,
                 skillIcon: "akar-icons:vue-fill",
             },
             {
-                title: "React",
+                title: "React/Next.js",
                 rate: 10,
                 skillIcon: "akar-icons:react-fill",
             },
@@ -69,7 +69,7 @@ const skills: Skill[] = [
             {
                 title: "MySQL",
                 skillIcon: "cib:mysql",
-                rate: 30,
+                rate: 20,
             },
             {
                 title: "Redis",
